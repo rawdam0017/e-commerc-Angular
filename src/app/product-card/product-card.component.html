@@ -4,6 +4,6 @@
       <h5 class="card-title">{{cardItem.title}}</h5>
       <p class="card-text">{{cardItem.category}}</p>
       <p class="card-text">{{cardItem.price | pricePipe }}</p>
-      <a href="#" class="btn btn-outline-success">Add To Cart</a>
+      <a class="btn btn-outline-success" (click)="showDetails()">Add To Cart</a>
     </div>
   </div>

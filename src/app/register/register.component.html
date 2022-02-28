@@ -1,0 +1,143 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card shadow-2-strong" style="border-radius: 1rem">
+        <form [formGroup]="RegisterForm" (ngSubmit)="submit()">
+          <h3 class="text-center my-5">Register</h3>
+          <div class="m-4">
+            <div class="mb-3">
+              <label for="Name" class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Name"
+                aria-describedby="Name"
+                formControlName="Name"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  RegisterForm.controls['Name'].touched &&
+                  !RegisterForm.controls['Name'].valid
+                "
+              >
+                <small *ngIf="formControls['Name'].errors?.['required']">
+                  this field is required
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="Email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="Email"
+                aria-describedby="Email"
+                formControlName="Email"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  RegisterForm.controls['Email'].touched &&
+                  !RegisterForm.controls['Email'].valid
+                "
+              >
+                <small *ngIf="formControls['Email'].errors?.['required']">
+                  this field is required
+                </small>
+                <small *ngIf="formControls['Email'].errors?.['pattern']">
+                  Email is inValid
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="Username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Username"
+                aria-describedby="Username"
+                formControlName="Username"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  RegisterForm.controls['Username'].touched &&
+                  !RegisterForm.controls['Username'].valid
+                "
+              >
+                <small *ngIf="formControls['Username'].errors?.['required']">
+                  this field is required
+                </small>
+                <small *ngIf="formControls['Username'].errors?.['pattern']">
+                  Username contains no spaces
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="Password" class="form-label">Password</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Password"
+                aria-describedby="Password"
+                formControlName="Password"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  RegisterForm.controls['Password'].touched &&
+                  !RegisterForm.controls['Password'].valid
+                "
+              >
+                <small *ngIf="formControls['Password'].errors?.['required']">
+                  this field is required
+                </small>
+                <small *ngIf="formControls['Password'].errors?.['pattern']">
+                  Password length not less than 8 characters , contains at least
+                  one lowercase , one uppercase , at least one digit and special
+                  character
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="Confirmpassword" class="form-label"
+                >Confirmpassword</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="Confirmpassword"
+                aria-describedby="Confirmpassword"
+                formControlName="Confirmpassword"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  RegisterForm.controls['Confirmpassword'].touched &&
+                  !RegisterForm.controls['Confirmpassword'].valid
+                "
+              >
+                <small
+                  *ngIf="formControls['Confirmpassword'].errors?.['required']"
+                >
+                  this field is required
+                </small>
+                <small
+                  *ngIf="formControls['Confirmpassword'].errors?.['MustMatch']"
+                >
+                  Passwords do not match
+                </small>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

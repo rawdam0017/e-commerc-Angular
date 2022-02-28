@@ -1,0 +1,55 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card shadow-2-strong" style="border-radius: 1rem">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <h3 class="text-center my-5">Login</h3>
+
+          <div class="m-4">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              required
+              ngModel
+              name="email"
+              [pattern]="emailPattern"
+              #email="ngModel"
+            />
+            <div class="text-danger" *ngIf="email.touched && !email.valid">
+              <small *ngIf="email.errors?.['required']">
+                this field is required
+              </small>
+              <small *ngIf="email.errors?.['pattern']"> Email is invalid </small>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"
+                >Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                required
+                ngModel
+                name="pass"
+                #pass="ngModel"
+              />
+              <div class="text-danger" *ngIf="pass.touched && !pass.valid">
+                <small *ngIf="pass.errors?.['required']">
+                  this field is required
+                </small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
