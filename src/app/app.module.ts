@@ -15,7 +15,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { CartComponent } from './cart/cart.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderComponent } from './loader/loader.component'
+import { ReqInterceptor } from './req.interceptor';
+// import {​​​​​​​​​ RequestInterceptor }​​​​​​​​​ from './request.interceptor'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,16 +30,24 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     LoginComponent,
     RegisterComponent,
     NotFoundPageComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass:ReqInterceptor,
+    multi:true
+  }],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

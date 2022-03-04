@@ -1,9 +1,12 @@
-<div class="card" style="width: 19rem;">
-    <img [src]="cardItem.image" style="height: 300px;" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">{{cardItem.title}}</h5>
-      <p class="card-text">{{cardItem.category}}</p>
-      <p class="card-text">{{cardItem.price | pricePipe }}</p>
-      <a class="btn btn-outline-success" (click)="showDetails()">Add To Cart</a>
-    </div>
+<div class="card" style="width: 19rem">
+  <img [src]="cardItem.image" style="height: 300px" class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title">{{ cardItem.title }}</h5>
+    <p class="card-text">{{ cardItem.category }}</p>
+    <p class="card-text">{{ cardItem.price | pricePipe }}</p>
+    <a class="btn btn-outline-success" (click)="showDetails()">Show Details</a>
+    <a class="btn btn-outline-success" (click)="addToCart()"
+      >Add To Cart</a
+    >
   </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="text-center">
+  <h3>cart</h3>
+  <hr />
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>name</th>
+        <th>price</th>
+        <th>Quantity</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let selected of product">
+        <td class="col-2">
+          <img
+            [src]="selected.image"
+            style="width: 50%; height: 50%"
+            alt="..."
+          />
+        </td>
+        <td>
+          {{ selected.title }}
+        </td>
+        <td>{{ selected.price | pricePipe }}</td>
+        <td>
+          <div style="display: inline">
+            <button class="btn mx-3" (click)="decreaseCounter(selected.id)">
+              -
+            </button>
+            {{ quantity }}
+            <button class="btn" (click)="increaseCounter(selected.id)">
+              +
+            </button>
+          </div>
+        </td>
+        <td>
+          <button class="btn" (click)="clear()">remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    {{ sum }}
+  </div>
+
+  <!-- <h3 class="mb-5">Counter : {{ counter }}</h3>
+      Decrease
+  </div>-->
+</div>
