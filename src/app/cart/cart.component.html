@@ -5,6 +5,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>Image</th>
         <th>name</th>
         <th>price</th>
@@ -13,7 +14,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let selected of product">
+      <tr *ngFor="let selected of product; let i = index">
+        <td>{{ i + 1 }}</td>
         <td class="col-2">
           <img
             [src]="selected.image"
@@ -26,18 +28,37 @@
         </td>
         <td>{{ selected.price | pricePipe }}</td>
         <td>
+          <!-- <td class="text-dark text-white">
+          <input
+            type="button"
+             (click)="increaseCounter(selected.id)"
+            value="+"
+          /><input
+            class="mx-4"
+            style="width: 40px"
+            type="text"
+            value="1"
+            #quantity
+            disabled
+          /><input
+            (click)="decreaseCounter(selected.id)"
+            type="button"
+            value="-"
+           />
+        </td> -->
+
           <div style="display: inline">
-            <button class="btn mx-3" (click)="decreaseCounter(selected.id)">
+            <button class="btn mx-3" (click)="decreaseCounter()">
               -
             </button>
             {{ quantity }}
-            <button class="btn" (click)="increaseCounter(selected.id)">
+            <button class="btn" (click)="increaseCounter()">
               +
             </button>
           </div>
         </td>
         <td>
-          <button class="btn" (click)="clear()">remove</button>
+          <button class="btn" (click)="remove(selected)">remove</button>
         </td>
       </tr>
     </tbody>

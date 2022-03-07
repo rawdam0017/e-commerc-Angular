@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { product } from '../interfaces/product';
+// import { product } from '../interfaces/product';
 import { CartService } from '../services/cart.service';
 // import cardList from '../../assets/data.json';
 import { ActivatedRoute } from '@angular/router';
@@ -15,11 +15,10 @@ export class CartComponent implements OnInit {
   product: any;
   counter = 0;
   quantity = 0;
-  sum =0;
-  items = this.CartService.getItems();
-  itemCount = this.CartService.getCounterValue();
-  pro: any;
-  flag: boolean = true
+  sum = 0;
+  // items = this.CartService.getItems();
+  // itemCount = this.CartService.getCounterValue();
+  //  flag: boolean = true
 
 
   constructor(private activatedRoute: ActivatedRoute, private CartService: CartService) {
@@ -32,24 +31,25 @@ export class CartComponent implements OnInit {
     this.CartService.getproduct().subscribe(
       res => this.product = res
     )
-    
-      for (let item of this.product) {
-        this.sum += item.price; 
-      }
+
+    for (let item of this.product) {
+      this.sum += item.price;
+    }
 
   }
 
-  increaseCounter(id: number) {
+  increaseCounter() {
     // return(++this.quantity)
-    return (++this.pro.id.quantity)
+
+    return (++this.quantity)
   }
-  decreaseCounter(id: number) {
-    return (--this.pro.id.quantity)
+  decreaseCounter() {
+    return (--this.quantity)
     // this.CartService.setCounterValue(--this.counter);
   }
 
-  clear() {
-    this.flag != this.flag
+  remove(item: any) {
+    this.CartService.removeCartItem(item)
     // this.items.splice(this.items.indexOf(this.pro.id), 1);
 
   }

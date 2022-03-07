@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+// import { time } from 'console';
 // import { product } from '../interfaces/product';
 
 @Injectable({
@@ -8,19 +9,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CartService {
   private counter = new BehaviorSubject(0);
-  private itemCount = new BehaviorSubject(1);
-  private products = new BehaviorSubject([]);
-  cartItems: any[] = [];
+  private products = new BehaviorSubject<any>([]);
+  cartItems: any = [];
 
-  // itemCount = this.counter.asObservable()
-  // cartItems: product[] = [];
-  // buyItems: product[] = [];
+
 
 
   constructor(private http: HttpClient) { }
 
   getProductList() {
-    return this.http.get('https://fakestoreapi.com/products')
+    return this.http.get(' https://fakestoreapi.com/products/')
+
   }
 
   getProductDetails(id: number) {
@@ -31,25 +30,28 @@ export class CartService {
     return this.counter;
   }
 
-  setCounterValue(newCounterVal: number) {
-    this.itemCount.next(newCounterVal);
-  }
+  // setCounterValue(newCounterVal: number) {
+  //   this.counter.next(newCounterVal);
+  // }
 
   setproduct(newPro: any) {
     this.products.next(newPro)
   }
-  getproduct(){
+  getproduct() {
     return this.products;
   }
 
 
   addToCart(newCounterVal: number) {
-    // this.cartItems.push(product);
     this.counter.next(newCounterVal);
   }
 
-  remove() {
-    this.http.delete('https://fakestoreapi.com/products/id')
+  removeCartItem(product: any) {
+    this.cartItems.map((a: any, index: any) => {
+      if (product.id === a.id) {
+        this.cartItems.splice(index, 1)
+      }
+    })
   }
 
   getItems() {
